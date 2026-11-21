@@ -88,6 +88,8 @@ python dev.py
 В первом терминале активируйте `.venv` и запустите заглушку:
 
 ```bash
+python3 -m venv .venv
+source .venv/bin/activate
 python -m uvicorn mock_keitaro:app --host 127.0.0.1 --port 8001
 ```
 
