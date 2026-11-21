@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Keitaro Wrapper</title>
+<link rel="stylesheet" href="/static/styles.css?v=3">
+<script src="/static/app.js?v=3" defer></script>
+</head>
+<body>
+<div class="layout">
+<nav class="sidebar" aria-label="Разделы">
+<p class="brand"><span aria-hidden="true">◆</span>AdRobot</p>
+<button type="button" id="nav-streams" aria-pressed="true">Кампании</button>
+<button type="button" id="nav-offers" aria-pressed="false">Офферы</button>
+</nav>
+<main>
+<div class="notifications">
+  <p class="notice" id="status" role="status"></p>
+  <p class="notice error" id="error" role="alert"></p>
+</div>
+<section id="workspace">
+<header class="header">
+<div><p class="eyebrow">Кампании / Потоки</p><h1>Потоки Keitaro</h1><p class="muted" id="campaign-caption">Выбери кампанию по ID</p></div>
+<button type="button" class="primary" id="open-create">+ Создать кампанию</button>
+</header>
+<form id="load-form" class="panel load-panel" novalidate>
+<fieldset class="toolbar">
+<label>ID кампании <input id="campaign-id" inputmode="numeric" placeholder="216176" required></label>
+<button type="submit" class="primary" value="import">Импортировать потоки</button>
+<button type="submit" value="local">Открыть сохранённые</button>
+</fieldset>
+</form>
+<dialog class="campaign-create" id="create-dialog" aria-labelledby="create-title">
+  <div class="dialog-header">
+    <h2 id="create-title">Создать кампанию</h2>
+    <button type="button" id="close-create" aria-label="Закрыть форму">×</button>
+  </div>
+  <form id="create-form" novalidate>
+    <fieldset class="create-fields">
+      <label>Название кампании
+        <input name="name" placeholder="Например, test_mx" required aria-describedby="create-error">
+      </label>
+      <label>Код страны
+        <input name="geo" maxlength="2" placeholder="MX" autocapitalize="characters" spellcheck="false" required aria-describedby="geo-hint create-error">
+        <small id="geo-hint">Две буквы, например MX</small>
+      </label>
+      <div id="create-picker" class="create-offer">
+        <label for="create-offer-query">Оффер</label>
+        <input id="create-offer-query" type="search" placeholder="Поиск по названию или ID" autocomplete="off" aria-describedby="create-error">
+        <div id="create-offer-results" class="offer-results" aria-label="Найденные офферы" hidden></div>
+      </div>
+    </fieldset>
+    <div class="create-footer">
+      <div class="create-feedback">
+        <p id="create-status" class="notice" role="status"></p>
+        <p id="create-error" class="notice error" role="alert"></p>
+      </div>
+      <button id="create-submit" class="primary" type="submit" disabled>Создать кампанию</button>
+    </div>
+  </form>
+</dialog>
+<div id="editor" class="panel empty">Импортируй потоки кампании, чтобы начать редактирование.</div>
+</section>
+<section id="catalog" hidden>
+<header class="header"><div><p class="eyebrow">Каталог</p><h1>Офферы</h1></div><button type="button" id="refresh-offers">Обновить</button></header>
+<div class="panel">
+<label class="catalog-filter">Поиск по названию или ID <input type="search" id="catalog-query"></label>
+<div id="catalog-list"></div>
+</div>
+</section>
+</main>
+</div>
+
+</body>
+</html>
